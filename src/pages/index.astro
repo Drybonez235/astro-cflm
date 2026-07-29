@@ -1,14 +1,13 @@
 ---
-import Page from "../layouts/Home.astro";
+import Page from "../layouts/BaseLayout.astro"
 
 import "../styles/global.css";
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Page
-  page_title="Christ For Life MC"
-  page_description="This is the main page for CFL moter cycle club"
+  title="Christ For Life Home" 
+  description="Christ for Life motorcycle club exists with the purpose of reaching the motorcycle community with the saving knowledge and love of Jesus Christ"
+  image="https://cflmc.org/public/favicon.avif"
 >
   <main class="text-divine-white snap-y snap-always antialiased">
     <section
@@ -123,7 +122,7 @@ import "../styles/global.css";
 
       <div class="absolute inset-0 -z-10">
         <img
-          src="/christ-for-life-motercycle-in-front-of-cross-portrate.jpg"
+          src="/christ-for-life-motercycle-in-front-of-cross-portrate.avif"
           alt="Motorcycle in front of cross"
           class="size-full object-contain opacity-100"
         />
@@ -188,7 +187,7 @@ import "../styles/global.css";
         <h2
           class="text-gold-500 font-sans text-xs font-black tracking-[0.3em] uppercase mb-2"
         >
-          Upcoming Runs & Rallies
+          Annual and Monthly Events
         </h2>
         <div class="h-1 w-12 bg-gold-500"></div>
       </div>
@@ -201,24 +200,24 @@ import "../styles/global.css";
         >
           <span
             class="text-chrome-400 font-sans text-xs font-bold uppercase tracking-widest"
-            >Run</span
+            >Meeting</span
           >
           <h3 class="font-headline text-gold-500 my-4 text-4xl">
-            Spring Fellowship Ride
+            Devotion and Prayer Meeting
           </h3>
 
           <div class="flex flex-col gap-4 mt-8">
             <div class="flex items-center gap-3">
               <div class="size-2 bg-gold-500 rotate-45"></div>
-              <p class="text-divine-white font-bold">March 15, 2026</p>
+              <p class="text-divine-white font-bold">First Monday of the Month</p>
             </div>
             <div class="flex items-center gap-3">
               <div class="size-2 bg-chrome-500 rotate-45"></div>
-              <p class="text-slate-300">10:00 AM — Kickstands Up</p>
+              <p class="text-slate-300">7:00 PM</p>
             </div>
             <div class="flex items-center gap-3">
               <div class="size-2 bg-chrome-500 rotate-45"></div>
-              <p class="text-slate-300">Clubhouse HQ / North Route</p>
+              <p class="text-slate-300">Facebook Live</p>
             </div>
           </div>
 
@@ -236,24 +235,24 @@ import "../styles/global.css";
         >
           <span
             class="text-chrome-400 font-sans text-xs font-bold uppercase tracking-widest"
-            >Community</span
+            >Bike Blessing</span
           >
           <h3 class="font-headline text-gold-500 my-4 text-4xl">
-            Iron & Grace BBQ
+            Annual Bike Blessing
           </h3>
 
           <div class="flex flex-col gap-4 mt-8">
             <div class="flex items-center gap-3">
               <div class="size-2 bg-gold-500 rotate-45"></div>
-              <p class="text-divine-white font-bold">April 02, 2026</p>
+              <p class="text-divine-white font-bold">Yearly in May</p>
             </div>
             <div class="flex items-center gap-3">
               <div class="size-2 bg-chrome-500 rotate-45"></div>
-              <p class="text-slate-300">1:00 PM — Food & Testimony</p>
+              <p class="text-slate-300">Kick off the season with a blessing</p>
             </div>
             <div class="flex items-center gap-3">
               <div class="size-2 bg-chrome-500 rotate-45"></div>
-              <p class="text-slate-300">Central Park South Pavillion</p>
+              <p class="text-slate-300">Riis Park Fullerton parking lot</p>
             </div>
           </div>
           <div
@@ -273,22 +272,22 @@ import "../styles/global.css";
             >Service</span
           >
           <h3 class="font-headline text-gold-500 my-4 text-4xl">
-            Annual Charity Rally
+            Christmas Gift Run
           </h3>
 
           <div class="flex flex-col gap-4 mt-8">
             <div class="flex items-center gap-3">
               <div class="size-2 bg-gold-500 rotate-45"></div>
-              <p class="text-divine-white font-bold">May 20, 2026</p>
+              <p class="text-divine-white font-bold">Yearly November - December</p>
             </div>
             <div class="flex items-center gap-3">
               <div class="size-2 bg-chrome-500 rotate-45"></div>
-              <p class="text-slate-300">08:00 AM — Registration</p>
+              <p class="text-slate-300">Donate Gifts for Children</p>
             </div>
-            <div class="flex items-center gap-3">
+            <!-- <div class="flex items-center gap-3">
               <div class="size-2 bg-chrome-500 rotate-45"></div>
-              <p class="text-slate-300">Main Square Amphitheater</p>
-            </div>
+              <p class="text-slate-300"></p>
+            </div> -->
           </div>
           <div
             class="absolute -bottom-10 left-1/2 flex -translate-x-1/2 items-center gap-2 md:hidden"
@@ -365,7 +364,7 @@ import "../styles/global.css";
             <div class="absolute -inset-1 rounded-sm border border-gold-500/30">
             </div>
             <img
-              src="/christ-for-life-president.jpg"
+              src="/christ-for-life-president.avif"
               class="size-20 rounded-sm object-cover grayscale md:size-32"
               alt="George Velazquez"
             />
@@ -567,7 +566,7 @@ import "../styles/global.css";
 
       <nav class="flex w-full max-w-md md:max-w-2xl flex-col gap-4 md:gap-6">
         <a
-          href="/support.html"
+          href="/support/"
           class="group relative overflow-hidden rounded-sm border border-slate-800 bg-asphalt-900 p-8 md:p-12 transition-all hover:border-gold-500/50 active:scale-95"
         >
           <h3
@@ -583,7 +582,7 @@ import "../styles/global.css";
         </a>
 
         <a
-          href="/legacy.html"
+          href="/legacy/"
           class="group relative overflow-hidden rounded-sm border border-slate-800 bg-asphalt-900 p-8 md:p-12 transition-all hover:border-gold-500/50 active:scale-95"
         >
           <h3
@@ -599,18 +598,18 @@ import "../styles/global.css";
         </a>
 
         <a
-          href="/prayer"
+          href="/prayer/"
           class="group relative overflow-hidden rounded-sm border border-slate-800 bg-asphalt-900 p-8 md:p-12 transition-all hover:border-gold-500/50 active:scale-95"
         >
           <h3
             class="font-headline text-3xl md:text-5xl text-divine-white group-hover:text-gold-500 transition-colors"
           >
-            View Prayer Requests
+            Devotion & Prayer
           </h3>
           <p
             class="font-sans text-[10px] md:text-xs uppercase tracking-widest text-chrome-500 mt-2 md:mt-4"
           >
-            Intercession & Support
+            Worship and Intercession
           </p>
         </a>
 

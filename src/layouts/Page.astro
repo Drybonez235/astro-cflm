@@ -1,21 +1,21 @@
 ---
 import Nav from '../components/nav.astro'
 import Footer from '../components/footer.astro'
+import type { BusinessInfo } from '../components/SEO.astro'; // Import the type
+const { title, description, image, type, businessInfo } = Astro.props;
+import BASEHEAD from '../components/Basehead.astro'
 
-
-const { page_title = "default" } = Astro.props;
-const { page_description = "default"} = Astro.props;
 ---
 
 
 <!DOCTYPE html>
 <html lang="en" class="">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{page_title}</title>
-  <meta name="description" content=`${page_description}`>
-</head>
+ <BASEHEAD 
+        title={title} 
+      description={description} 
+      image={image} 
+      businessInfo={businessInfo}>
+  </BASEHEAD>
 <body>
     <Nav />
 	<slot />

@@ -1,0 +1,84 @@
+---
+const SITE_DEFAULT_TITLE = 'Christ For Life Motercycle Club';
+const SITE_DEFAULT_DESC = 'Christ for Life motorcycle club exists with the purpose of reaching the motorcycle community with the saving knowledge and love of Jesus Christ.';
+const SITE_DEFAULT_IMG = 'https://cflmc.org/public/favicon.png'; // Placed in public/ folder
+const canonicalURL =  Astro.props.canonicalURL || new URL(Astro.url.pathname, Astro.site);
+
+export interface BusinessInfo {
+  name: 'Christ For Life';
+  legalName?: string;
+  url: 'https://cflmc.org/';
+  logo: 'https://cflmc.org/public/favicon.png';
+  description: 'Christ for Life motorcycle club exists with the purpose of reaching the motorcycle community with the saving knowledge and love of Jesus Christ.';
+  telephone?: '7739832677';
+  address: {
+    streetAddress: '6156 W Grand Ave';
+    addressLocality: 'Chicago'; // City
+    addressRegion: 'IL';   // State/Province (e.g., "NY")
+    postalCode: '60634';
+    addressCountry: 'US';  // (e.g., "US")
+  };
+}
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: URL;
+  type?: 'website' | 'article';
+  businessInfo?: BusinessInfo;
+}
+
+const {
+  title = SITE_DEFAULT_TITLE,
+  description = SITE_DEFAULT_DESC,
+  image = SITE_DEFAULT_IMG,
+  type = 'website',
+  businessInfo,
+} = Astro.props;
+
+const formattedTitle = title === SITE_DEFAULT_TITLE ? title : `${title}`;
+let jsonLD = null;
+
+if (businessInfo) {
+  jsonLD = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": businessInfo.name,
+    "legalName": businessInfo.name, 
+    "url": businessInfo.url,
+    "logo": businessInfo.logo,
+    "image": image, // Fallback to the page's open graph image for search engines
+    "description": businessInfo.description,
+    "telephone": businessInfo.telephone,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": businessInfo.address.streetAddress,
+      "addressLocality": businessInfo.address.addressLocality,
+      "addressRegion": businessInfo.address.addressRegion,
+      "postalCode": businessInfo.address.postalCode,
+      "addressCountry": businessInfo.address.addressCountry,
+    }
+  };
+}
+---
+
+<link rel="canonical" href={canonicalURL} />
+
+<title>{formattedTitle}</title>
+<meta name="title" content={formattedTitle} />
+<meta name="description" content={description} />
+
+<meta property="og:type" content={type} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={formattedTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={formattedTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+{jsonLD && (
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
+)}
