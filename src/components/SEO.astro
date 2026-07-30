@@ -1,24 +1,42 @@
 ---
-const SITE_DEFAULT_TITLE = 'Christ For Life Motercycle Club';
+const SITE_DEFAULT_TITLE = 'Christ For Life Motorcycle Club';
 const SITE_DEFAULT_DESC = 'Christ for Life motorcycle club exists with the purpose of reaching the motorcycle community with the saving knowledge and love of Jesus Christ.';
-const SITE_DEFAULT_IMG = 'https://cflmc.org/public/favicon.png'; // Placed in public/ folder
-const canonicalURL =  Astro.props.canonicalURL || new URL(Astro.url.pathname, Astro.site);
+const SITE_DEFAULT_IMG = '/favicon.svg'; 
+const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Astro.site);
+
+export interface AddressInfo {
+  streetAddress: string;
+  addressLocality: string;
+  addressRegion: string;
+  postalCode: string;
+  addressCountry: string;
+}
 
 export interface BusinessInfo {
-  name: 'Christ For Life';
+  name: string;
   legalName?: string;
-  url: 'https://cflmc.org/';
-  logo: 'https://cflmc.org/public/favicon.png';
-  description: 'Christ for Life motorcycle club exists with the purpose of reaching the motorcycle community with the saving knowledge and love of Jesus Christ.';
-  telephone?: '7739832677';
-  address: {
-    streetAddress: '6156 W Grand Ave';
-    addressLocality: 'Chicago'; // City
-    addressRegion: 'IL';   // State/Province (e.g., "NY")
-    postalCode: '60634';
-    addressCountry: 'US';  // (e.g., "US")
-  };
+  url: string;
+  logo: string;
+  description: string;
+  telephone?: string;
+  address: AddressInfo;
 }
+
+const BUSINESS_INFO_DEFAULT: BusinessInfo = {
+  name: 'Christ For Life',
+  url: 'https://cflmc.org/',
+  logo: '/favicon.svg',
+  description: 'Christ for Life motorcycle club exists with the purpose of reaching the motorcycle community with the saving knowledge and love of Jesus Christ.',
+  telephone: '7739832677',
+  address: {
+    streetAddress: '6156 W Grand Ave',
+    addressLocality: 'Chicago',
+    addressRegion: 'IL',
+    postalCode: '60634',
+    addressCountry: 'US',
+  },
+};
+
 interface Props {
   title?: string;
   description?: string;
@@ -33,35 +51,31 @@ const {
   description = SITE_DEFAULT_DESC,
   image = SITE_DEFAULT_IMG,
   type = 'website',
-  businessInfo,
+  businessInfo = BUSINESS_INFO_DEFAULT, // Sets fallback so JSON-LD always generates
 } = Astro.props;
 
 const formattedTitle = title === SITE_DEFAULT_TITLE ? title : `${title}`;
-let jsonLD = null;
 
-if (businessInfo) {
-  jsonLD = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": businessInfo.name,
-    "legalName": businessInfo.name, 
-    "url": businessInfo.url,
-    "logo": businessInfo.logo,
-    "image": image, // Fallback to the page's open graph image for search engines
-    "description": businessInfo.description,
-    "telephone": businessInfo.telephone,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": businessInfo.address.streetAddress,
-      "addressLocality": businessInfo.address.addressLocality,
-      "addressRegion": businessInfo.address.addressRegion,
-      "postalCode": businessInfo.address.postalCode,
-      "addressCountry": businessInfo.address.addressCountry,
-    }
-  };
-}
+const jsonLD = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": businessInfo.name,
+  "legalName": businessInfo.legalName || businessInfo.name, 
+  "url": businessInfo.url,
+  "logo": new URL(businessInfo.logo, Astro.site).href,
+  "image": new URL(image, Astro.url).href,
+  "description": businessInfo.description,
+  "telephone": businessInfo.telephone,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": businessInfo.address.streetAddress,
+    "addressLocality": businessInfo.address.addressLocality,
+    "addressRegion": businessInfo.address.addressRegion,
+    "postalCode": businessInfo.address.postalCode,
+    "addressCountry": businessInfo.address.addressCountry,
+  }
+};
 ---
-
 <link rel="canonical" href={canonicalURL} />
 
 <title>{formattedTitle}</title>
