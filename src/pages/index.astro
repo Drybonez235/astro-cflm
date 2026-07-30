@@ -1,5 +1,6 @@
 ---
 import Page from "../layouts/BaseLayout.astro"
+import FOOTER from '../components/footer.astro'
 
 import "../styles/global.css";
 ---
@@ -9,7 +10,7 @@ import "../styles/global.css";
   description="Christ for Life motorcycle club exists with the purpose of reaching the motorcycle community with the saving knowledge and love of Jesus Christ"
   image="https://cflmc.org/public/favicon.svg"
 >
-  <main class="h-dvh overflow-y-auto text-divine-white snap-y snap-proximity scroll-smooth antialiased">
+  <main class="h-dvh overflow-y-auto text-divine-white snap-y snap-proximity antialiased [webkit-overflow-scrolling:touch]">
     <section
       id="hero"
       class="relative flex min-h-dvh flex-col items-center justify-between overflow-hidden px-4 pt-10 text-center snap-start scroll-mt-20"
@@ -619,5 +620,6 @@ import "../styles/global.css";
     </a> -->
       </nav>
     </section>
+    <FOOTER/>
   </main>
 </Page>
